@@ -1,0 +1,22 @@
+services:
+  node:
+    build: "."
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./:/var/www/app"
+    networks:
+      - db
+
+  db:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DATABASE_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - "./volumes/db:/data/db"
+    networks:
+      - db
+
+networks:
+  db:
