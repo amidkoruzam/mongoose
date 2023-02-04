@@ -22,3 +22,5 @@ export const addBook = async ({ title, author, publishedAt }) => {
   const book = await Book.create({ title, author, publishedAt });
   return book;
 };
+
+export const removeBook = (id) => Book.findByIdAndDelete(id);
