@@ -24,3 +24,21 @@ export const addBook = async ({ title, author, publishedAt }) => {
 };
 
 export const removeBook = (id) => Book.findByIdAndDelete(id);
+
+export const updateBook = async (id, { title, author, publishedAt }) => {
+  const book = await Book.findById(id);
+
+  if (title) {
+    book.title = title;
+  }
+
+  if (author) {
+    book.author = author;
+  }
+
+  if (publishedAt) {
+    book.publishedAt = publishedAt;
+  }
+
+  return book.save();
+};
