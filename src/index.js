@@ -8,7 +8,7 @@ import {
   removeBook,
   updateBook,
 } from "./features/book/index.js";
-import { addAuthor } from "./features/author/index.js";
+import { addAuthor, getAuthors } from "./features/author/index.js";
 
 dotenv.config();
 
@@ -41,6 +41,11 @@ app.delete("/books/:id", async (req, res) => {
   const { id } = req.params;
   await removeBook(id);
   return res.sendStatus(200);
+});
+
+app.get("/author", async (req, res) => {
+  const authors = await getAuthors();
+  return res.json(authors);
 });
 
 app.post("/author", async (req, res) => {

@@ -9,6 +9,10 @@ const authorSchema = new Schema({
 
 const Author = mongoose.model("Author", authorSchema);
 
+export const getAuthors = () => {
+  return Author.find({});
+};
+
 export const addAuthor = ({ name }) => {
   return Author.create({ name });
 };
